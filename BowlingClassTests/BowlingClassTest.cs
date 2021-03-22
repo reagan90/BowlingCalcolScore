@@ -51,5 +51,47 @@ namespace BowlingClassTests
 
             Assert.That(() => bowling.Score(), Is.EqualTo(88));
         }
+
+        [Test]
+        public void SpareTest()
+        {
+
+            ILancio[] lancio = new ILancio[12];
+            for (int i = 0; i < lancio.Length; i++)
+                lancio[i] = new Lancio();
+
+            lancio[0].FirstSet(3);
+            lancio[0].SecondSet(4);
+
+            lancio[1].FirstSet(6);
+            lancio[1].SecondSet(4);
+
+            lancio[2].FirstSet(4);
+            lancio[2].SecondSet(5);
+
+            IBowling bowling = new Bowling(lancio);
+
+            Assert.That(() => bowling.Score(), Is.EqualTo(30));
+        }
+
+        [Test]
+        public void StrikeTest() {
+
+            ILancio[] lancio = new ILancio[12];
+            for (int i = 0; i < lancio.Length; i++)
+                lancio[i] = new Lancio();
+
+            lancio[0].FirstSet(3);
+            lancio[0].SecondSet(4);
+
+            lancio[1].FirstSet(10);
+
+            lancio[2].FirstSet(4);
+            lancio[2].SecondSet(5);
+
+            IBowling bowling = new Bowling(lancio);
+
+            Assert.That(() => bowling.Score(), Is.EqualTo(35));
+        }
     }
 }
