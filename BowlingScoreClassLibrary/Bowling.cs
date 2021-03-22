@@ -23,9 +23,34 @@ namespace BowlingScoreClassLibrary
             _bow = bow;
 
         }
+
+        public Bowling()
+        {
+            _bow = new ILancio[12];
+
+            for (int i = 0; i < _bow.Length; i++)
+            {
+                _bow[i] = new Lancio();
+            }
+        }
         public int Score()
         {
-            throw new NotImplementedException();
+            int somma = 0;
+
+            for (var i = 0; i < _bow.Length; i++)
+            {
+                if (_bow[i].IsTrike())
+                    somma += _bow[i].FirstGet() + _bow[i + 1].FirstGet() + _bow[i + 1].SecondGet();
+
+                else if (_bow[i].IsSpare())
+                    somma += _bow[i].FirstGet() + _bow[i].SecondGet() + _bow[i + 1].FirstGet();
+
+                else
+                    somma += _bow[i].FirstGet() + _bow[i].SecondGet();
+            }
+
+
+            return somma;
         }
     }
 }
