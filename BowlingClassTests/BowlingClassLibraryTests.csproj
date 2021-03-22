@@ -54,6 +54,16 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BowlingScoreClassLibrary\BowlingScoreClassLibrary.csproj">
+      <Project>{86df76a8-7a3b-4666-8c1a-42d46d391614}</Project>
+      <Name>BowlingScoreClassLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LancioClassLibrary\LancioClassLibrary.csproj">
+      <Project>{2d4b001b-84ca-4808-b4e1-97979bbdaaa7}</Project>
+      <Name>LancioClassLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
