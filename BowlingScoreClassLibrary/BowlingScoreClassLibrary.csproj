@@ -44,5 +44,11 @@
     <Compile Include="Bowling.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LancioClassLibrary\LancioClassLibrary.csproj">
+      <Project>{2d4b001b-84ca-4808-b4e1-97979bbdaaa7}</Project>
+      <Name>LancioClassLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
