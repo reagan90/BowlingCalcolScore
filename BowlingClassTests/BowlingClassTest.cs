@@ -12,12 +12,23 @@ namespace BowlingClassTests
     [TestFixture]
     public class BowlingClassTest
     {
+        ILancio[] lancio = new ILancio[12];
+
+        void Init()
+        {
+            for (int i = 0; i < lancio.Length; i++)
+                lancio[i] = new Lancio();
+        }
+
+        
+
+
+
         [Test]
         public void SumTest()
         {
-            ILancio[] lancio = new ILancio[12];
-            for (int i = 0; i < lancio.Length; i++)
-                lancio[i] = new Lancio();
+            Init();
+
             lancio[0].FirstSet(3);
             lancio[0].SecondSet(4);
 
@@ -55,10 +66,7 @@ namespace BowlingClassTests
         [Test]
         public void SpareTest()
         {
-
-            ILancio[] lancio = new ILancio[12];
-            for (int i = 0; i < lancio.Length; i++)
-                lancio[i] = new Lancio();
+            Init();
 
             lancio[0].FirstSet(3);
             lancio[0].SecondSet(4);
@@ -77,10 +85,6 @@ namespace BowlingClassTests
         [Test]
         public void StrikeTest() {
 
-            ILancio[] lancio = new ILancio[12];
-            for (int i = 0; i < lancio.Length; i++)
-                lancio[i] = new Lancio();
-
             lancio[0].FirstSet(3);
             lancio[0].SecondSet(4);
 
@@ -93,5 +97,21 @@ namespace BowlingClassTests
 
             Assert.That(() => bowling.Score(), Is.EqualTo(35));
         }
+
+       
+
+        [Test]
+        public void ArgumentException()
+        {
+            Init();
+
+            IBowling bowling = new Bowling(lancio);
+
+            lancio[0].FirstSet(3);
+            lancio[0].SecondSet(-8);
+
+            Assert.That(() => bowling.Score(), Throws.TypeOf<ArgumentException>());
+        }
+
     }
 }

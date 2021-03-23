@@ -33,9 +33,21 @@ namespace BowlingScoreClassLibrary
                 _bow[i] = new Lancio();
             }
         }
+
+
+        public void ControlValore()
+        {
+            foreach (var b in _bow)
+                if (b.FirstGet() < 0 || b.SecondGet() < 0)
+                    throw new ArgumentException();
+            
+        }
+
         public int Score()
         {
             int somma = 0;
+
+            ControlValore();
 
             for (var i = 0; i < _bow.Length; i++)
             {
