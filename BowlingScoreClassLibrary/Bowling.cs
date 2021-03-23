@@ -26,7 +26,7 @@ namespace BowlingScoreClassLibrary
 
         public Bowling()
         {
-            _bow = new ILancio[12];
+            _bow = new ILancio[11];
 
             for (int i = 0; i < _bow.Length; i++)
             {
@@ -46,16 +46,36 @@ namespace BowlingScoreClassLibrary
         public int Score()
         {
             int somma = 0;
+            int lastPosizione = 9;
 
             ControlValore();
 
             for (var i = 0; i < _bow.Length; i++)
             {
                 if (_bow[i].IsTrike())
-                    somma += _bow[i].FirstGet() + _bow[i + 1].FirstGet() + _bow[i + 1].SecondGet();
+                {
+                    if (i == lastPosizione)
+                    {
+                        somma += _bow[i].FirstGet() + _bow[i + 1].FirstGet() + _bow[i + 1].SecondGet();
+                        return somma;
+                    }
+                    else
+                        somma += _bow[i].FirstGet() + _bow[i + 1].FirstGet() + _bow[i + 1].SecondGet();
+                }
+                   
 
                 else if (_bow[i].IsSpare())
-                    somma += _bow[i].FirstGet() + _bow[i].SecondGet() + _bow[i + 1].FirstGet();
+                {
+                    if (i == lastPosizione)
+                    {
+                        somma += _bow[i].FirstGet() + _bow[i].SecondGet() + _bow[i + 1].FirstGet();
+                        return somma;
+                    }
+
+                    else
+                        somma += _bow[i].FirstGet() + _bow[i].SecondGet() + _bow[i + 1].FirstGet();
+                }
+                    
 
                 else
                     somma += _bow[i].FirstGet() + _bow[i].SecondGet();
