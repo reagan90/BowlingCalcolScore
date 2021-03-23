@@ -12,22 +12,27 @@ namespace BowlingClassTests
     [TestFixture]
     public class BowlingClassTest
     {
-        ILancio[] lancio = new ILancio[12];
+        private ILancio[] lancio;
 
-        void Init()
+        [SetUp]
+        public void Init()
         {
+            lancio = new ILancio[12];
             for (int i = 0; i < lancio.Length; i++)
                 lancio[i] = new Lancio();
         }
 
         
-
+        [TearDown]
+        public void CleanUp()
+        {
+            lancio = null;
+        }
 
 
         [Test]
         public void SumTest()
         {
-            Init();
 
             lancio[0].FirstSet(3);
             lancio[0].SecondSet(4);
@@ -66,7 +71,6 @@ namespace BowlingClassTests
         [Test]
         public void SpareTest()
         {
-            Init();
 
             lancio[0].FirstSet(3);
             lancio[0].SecondSet(4);
@@ -103,7 +107,6 @@ namespace BowlingClassTests
         [Test]
         public void ArgumentException()
         {
-            Init();
 
             IBowling bowling = new Bowling(lancio);
 
